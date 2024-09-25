@@ -21,13 +21,16 @@ console.print(title, style="bold magenta", justify="center", width=console.width
 
 # Menu
 def create_city(name_champ):
-    console.print(f"What is the name of your city {name_champ}", style="green")
-    name_city = input("Enter a city name : ")
+    console.print(f"What is the name of your city {name_champ} ?", style="green")
+    console.print("Enter a city name : ", style="blue")
+    name_city = input("> ")
+    console.print("What a beautiful city", style="green")
     return name_city
 
 def create_champ(name_champ):
-    console.print("Hello stranger what is your name_champ ?", style="green")
-    name_champ = console.input("Enter your name : ")
+    console.print("Hello stranger what is your name ?", style="green")
+    console.print("Enter your name : ", style="blue")
+    name_champ = input("> ")
     console.print(f"So, hello {name_champ}", style="green")
     name_city = create_city(name_champ)
     return [ name_champ, name_city ]
