@@ -8,19 +8,18 @@ from rich.table import Table
 
 # Importation
 from commands.utilites import function
+import environmental_variables as EnvVar
 
 # Vars
 console = Console()
-golds = 100
-day = 1
-times = [1,"00"]
+
 
 # Functions
 def info(current_day,current_times,current_golds):
     # Function to display the info
     info_text = Text()
-    info_text.append(f"Day: {current_day}\n")
-    info_text.append(f"Time: {current_times[0]}h{current_times[1]}\n")
+    info_text.append(f"Days: {current_day}\n")
+    info_text.append(f"Hours: {current_times}h\n")
     info_text.append(f"Golds: {current_golds}", style = "Yellow")
     info_panel = Panel(info_text, title = "INFO", border_style = "bold cyan", width = 20)
     return  console.print(info_panel, justify = "left")
@@ -28,7 +27,7 @@ def info(current_day,current_times,current_golds):
 def term(response = [""]):
     # The Terminal app
     console.clear()
-    info(day, times, golds)
+    info(EnvVar.day_instance.get_day(), EnvVar.hour_instance.get_hour(), EnvVar.gold_instance.get_gold())
     if response[0] != "":
         if isinstance(response,list):
             for i in range (len(response)):
