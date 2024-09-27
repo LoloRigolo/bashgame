@@ -7,7 +7,7 @@ from rich.text import Text
 from rich.table import Table
 
 # Importation
-import commands
+from commands.utilites import function
 
 # Vars
 console = Console()
@@ -30,21 +30,18 @@ def term(response = [""]):
     console.clear()
     info(day, times, golds)
     if response[0] != "":
-        if isinstance(response[0],list):
-            for i in range (len(response[0])):
-                console.print(response[0][i])
+        if isinstance(response,list):
+            for i in range (len(response)):
+                console.print(response[i])
         else:
-            console.print(response[0])
+            console.print(response)
 
     command = input("> ")
-    if command == "quit":
+    if command in {"quit","q"}:
         console.print(Text("Goodbye !", style = "green"))
         return 
     elif command == "":
         term()
-    elif commands.test_input(command):
-        term(commands.run(command)) #call an python file where commands are save
     else:
-        term([Text("Invalid syntax", style = "red")])
-
+        term(function.run(command)) #call an python file where commands are save
 term()
