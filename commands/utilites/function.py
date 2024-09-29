@@ -33,14 +33,14 @@ def run(user_input:str):
 
     # Command helloworld
     if user_input[0] == "helloworld":
-        helloworld_response = helloworld.helloworld(user_input[1:])
+        helloworld_response = helloworld.run(user_input[1:])
         if  isinstance(helloworld_response, list):
             return options_panel(helloworld_response)
         text_response.append(helloworld_response, style = "green")
 
     #Command wait
     elif user_input[0] == "wait":
-        wait_response = wait.wait(user_input[1:])
+        wait_response = wait.run(user_input[1:])
         if  isinstance(wait_response, list):
             return options_panel(wait_response)
         text_response.append(wait_response, style = "green")

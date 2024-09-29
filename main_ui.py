@@ -27,7 +27,7 @@ def info(current_day,current_times,current_golds):
 def term(response = [""]):
     # The Terminal app
     console.clear()
-    info(EnvVar.day_instance.get_day(), EnvVar.hour_instance.get_hour(), EnvVar.gold_instance.get_gold())
+    info(EnvVar.day_instance.get(), EnvVar.hour_instance.get(), EnvVar.gold_instance.get())
     if response[0] != "":
         if isinstance(response,list):
             for i in range (len(response)):
