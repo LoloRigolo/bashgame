@@ -10,7 +10,9 @@ def run(options: list):
         return description(options[0])
     elif (options[0] in OPTIONS):
             if options[0] in {"-name"}:
-                helloworld_text: str = f"Hello, {options[1]}!"      
+                helloworld_text: str = f"Hello, {options[1]}!"
+    else:
+         return description()     
     return helloworld_text
 
 def description(command_option:str = "") -> list:
