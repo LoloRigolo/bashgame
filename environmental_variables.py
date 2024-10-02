@@ -79,8 +79,40 @@ class People:
         self.people_list["Jobs"].append(job)
         self.counter += 1
 
+# Wood object
+class Wood:
+    def __init__(self, wood = 0):
+        self.wood = wood
+    
+    def get(self) -> int:
+        # Getter
+        return self.wood
+    
+    def update(self, increment:int) -> int:
+        self.wood += increment
+        return self.wood
+
+# Metal object
+class Metal:
+    def __init__(self, metal = 0):
+        self.metal = metal
+    
+    def get(self) -> int:
+        # Getter
+        return self.metal
+    
+    def update(self, increment:int) -> int:
+        self.metal += increment
+        return self.metal
+
+
 # Instances init
+# Time
 day_instance = Day()
 hour_instance = Hour()
-gold_instance = Gold()
 people_instance = People()
+
+# object
+gold_instance = Gold()
+wood_instance = Wood()
+metal_instance = Metal()
