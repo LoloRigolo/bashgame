@@ -4,7 +4,9 @@ from rich.text import Text
 from rich.table import Table
 from rich.console import Console
 
-from commands import helloworld, people, wait
+console = Console()
+
+from commands import helloworld, people, wait, inventory
 
 # Functions
 def options_panel(command_carac:list) -> list:
@@ -64,7 +66,14 @@ def run(user_input:str):
         elif isinstance(people_response, dict):
             return table_panel(people_response)
         text_response.append(people_response, style = "green")
-        
+    
+    elif user_input[0] == "inventory":
+        inventory_response = inventory.run(user_input[1:])
+        if isinstance(inventory_response ,list):
+            return options_panel(inventory_response)
+        elif isinstance(inventory_response, dict):
+            return table_panel(inventory_response)
+        text_response.append(people_response, style = "green")
 
     else:
         text_response.append("Invalid Syntax", style = "red")

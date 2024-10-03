@@ -12,8 +12,6 @@ OPTIONS: dict = {
     "-list": "This command shows you a list of people!"
 }
 
-
-
 def run(options: list):
     if len(options) == 0:
         return description()
