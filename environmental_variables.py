@@ -57,9 +57,30 @@ class Gold:
         # Update with nbr (increment) given
         self.gold += increment
         return self.gold
+    
+# People object
+class People:
+    people_list = {"Names": ["name1", "name2", "name3"], "Jobs": ["free", "free", "free"]}
 
+    def __init__(self):
+        # Initialiser counter en appelant get() à partir de l'instance
+        self.counter = self.get() + 1
+
+    def get(self) -> int:
+        # Récupère la longueur de la liste des noms
+        values = list(self.people_list.values())
+        return len(values[0])
+
+    def create(self):
+        # Créer un nouveau nom et job, puis ajouter à la liste
+        name = "name" + str(self.counter)
+        job = "free"
+        self.people_list["Names"].append(name)
+        self.people_list["Jobs"].append(job)
+        self.counter += 1
 
 # Instances init
 day_instance = Day()
 hour_instance = Hour()
 gold_instance = Gold()
+people_instance = People()

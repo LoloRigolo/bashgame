@@ -4,8 +4,7 @@ from rich.text import Text
 from rich.table import Table
 from rich.console import Console
 
-from commands import helloworld
-from commands import wait
+from commands import helloworld, people, wait
 
 # Functions
 def options_panel(command_carac:list) -> list:
@@ -24,6 +23,19 @@ def options_panel(command_carac:list) -> list:
         Console().print(panel_table)
         return [panel_desc,panel_table]
     return [panel_desc]
+
+
+##coder la fonction table_panel renvoie une liste de liste coder un panel ... avec les info qui a dans people response 
+
+def table_panel(dico: dict):
+    table = Table()
+    values = list(dico.values())
+    for key in dico:
+        table.add_column(key, justify= "left")
+    for pair in zip(*values):
+        table.add_row(pair[0],pair[1])
+    panel_table = Panel(table, border_style="blue")
+    return [panel_table]
 
 def run(user_input:str):
     # Function to run commands
@@ -44,6 +56,15 @@ def run(user_input:str):
         if  isinstance(wait_response, list):
             return options_panel(wait_response)
         text_response.append(wait_response, style = "green")
+    
+    elif user_input[0] == "people":
+        people_response = people.run(user_input[1:])
+        if  isinstance(people_response, list):
+            return options_panel(people_response)
+        elif isinstance(people_response, dict):
+            return table_panel(people_response)
+        text_response.append(people_response, style = "green")
+        
 
     else:
         text_response.append("Invalid Syntax", style = "red")
