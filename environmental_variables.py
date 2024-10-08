@@ -71,6 +71,10 @@ class People:
         values = list(self.people_list.values())
         return len(values[0])
 
+    def get_job(self, name):
+        index = self.people_list["Names"].index(name)
+        return self.people_list["Jobs"][index]
+
     def create(self):
         # Créer un nouveau nom et job, puis ajouter à la liste
         name = "name" + str(self.counter)
@@ -78,6 +82,14 @@ class People:
         self.people_list["Names"].append(name)
         self.people_list["Jobs"].append(job)
         self.counter += 1
+    
+    def rename(self, name, new_name):
+        index = self.people_list["Names"].index(name)
+        self.people_list["Names"][index] = new_name
+
+    def assign(self, name, job):
+         index = self.people_list["Names"].index(name)
+         self.people_list["Jobs"][index] = job
 
 # Wood object
 class Wood:
