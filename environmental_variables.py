@@ -91,6 +91,15 @@ class People:
          index = self.people_list["Names"].index(name)
          self.people_list["Jobs"][index] = job
 
+    def blacksmith(self) -> list:
+        # Return a list of blacksmith
+        blacksmith: list =[]
+        for job in self.people_list["Jobs"]:
+            if job == "Blacksmith":
+                index = self.people_list["Jobs"].index(job)
+                blacksmith.append(self.people_list["Names"][index])
+        return blacksmith
+
 # Wood object
 class Wood:
     def __init__(self, wood = 0):

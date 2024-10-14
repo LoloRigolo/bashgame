@@ -6,7 +6,7 @@ from rich.console import Console
 
 console = Console()
 
-from commands import helloworld, people, wait, inventory
+from commands import helloworld, people, wait, inventory, blacksmith
 
 # Functions
 def options_panel(command_carac:list) -> list:
@@ -31,11 +31,11 @@ def options_panel(command_carac:list) -> list:
 
 def table_panel(dico: dict):
     table = Table()
-    values = list(dico.values())
+    values = zip(*dico.values())
     for key in dico:
         table.add_column(key, justify= "left")
-    for pair in zip(*values):
-        table.add_row(pair[0],pair[1])
+    for value in values:
+        table.add_row(*[str(item) for item in value])
     panel_table = Panel(table, border_style="blue")
     return [panel_table]
 
@@ -74,6 +74,14 @@ def run(user_input:str):
         elif isinstance(inventory_response, dict):
             return table_panel(inventory_response)
         text_response.append(people_response, style = "green")
+
+    elif user_input[0] == "blacksmith":
+        blacksmith_repsonse = blacksmith.run(user_input[1:])
+        if isinstance(blacksmith_repsonse ,list):
+            return options_panel(blacksmith_repsonse)
+        elif isinstance(blacksmith_repsonse, dict):
+            return table_panel(blacksmith_repsonse)
+        text_response.append(blacksmith_repsonse, style = "green") 
 
     else:
         text_response.append("Invalid Syntax", style = "red")
