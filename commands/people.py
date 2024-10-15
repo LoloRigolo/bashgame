@@ -20,14 +20,15 @@ def run(options: list):
     elif options[0] in OPTIONS:
         if options[0] == "-list" and len(options) == 1:
             return people.people_list
-        elif options[1] == options[2] or people.get_job(options[1]) == options[2]:
-            return "It's already the case"
-        elif options[0] == "-rename" and len(options) == 3 and regex_name(options[2]) and options[1] in people.people_list["Names"]:
-            people.rename(options[1], options[2])
-            return f"{options[1]} succefully rename to {options[2]}"
-        elif options[0] == "-assign" and len(options) == 3 and options[2] in ej.JOBS and options[1] in people.people_list["Names"]:
-            people.assign(options[1], options[2])
-            return f"{options[1]} is now a {options[2]}"
+        elif len(options) >= 3:
+            if options[1] == options[2] or people.get_job(options[1]) == options[2]:
+                return "It's already the case"
+            elif options[0] == "-rename" and len(options) == 3 and regex_name(options[2]) and options[1] in people.people_list["Names"]:
+                people.rename(options[1], options[2])
+                return f"{options[1]} succefully rename to {options[2]}"
+            elif options[0] == "-assign" and len(options) == 3 and options[2] in ej.JOBS and options[1] in people.people_list["Names"]:
+                people.assign(options[1], options[2])
+                return f"{options[1]} is now a {options[2]}"
         return description(options[0])
 
 # The description function to show details about commands related to people
